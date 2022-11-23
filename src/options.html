@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf8">
+    <title>Options</title>
+    <link rel="stylesheet" href="options.css">
+</head>
+<body>
+
+    <h1>Mastodon View Profile</h1>
+    <p>In order to work properly, this extension needs to know which instance hosts your account.</p>
+
+    <form id="settings" action="" method="POST">
+        <h2>Instance Configuration</h2>
+        <fieldset>
+            <dl>
+                <dt>
+                    <label for="local_domain"><code>LOCAL_DOMAIN</code></label>
+                </dt>
+                <dd>
+                    <input type="text" name="local_domain" id="local_domain" value="" required>
+                    <div class="info">
+                        <p>ℹ️ <code>LOCAL_DOMAIN</code> of the Mastodon instance where you have your account (e.g. <code>toot.cafe</code>, <code>mastodon.social</code>, …)</p>
+                    </div>
+                </dd>
+
+                <dt>
+                    <label for="web_domain"><code>WEB_DOMAIN</code></label>
+                </dt>
+                <dd>
+                    <input type="text" name="web_domain" id="web_domain" value="">
+                    <div class="info">
+                        <p>ℹ️ <code>WEB_DOMAIN</code> of the Mastodon instance where you have your account. Typically this is the same as the <code>LOCAL_DOMAIN</code> value, yet some instances run Mastodon on a subdomain (e.g. <code>fediverse.zachleat.com</code>).</p>
+                        <p><b>You can leave this value empty if it is the same as the <code>LOCAL_DOMAIN</code> or if you don’t know what this means.</b></p>
+                    </div>
+                </dd>
+            </dl>
+            <button id="save">Save Settings</button>
+        </fieldset>
+    </form>
+
+    <script src="options.js"></script>
+    </body>
+</html>

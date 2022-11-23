@@ -1,0 +1,122 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: 'Times New Roman', Times, serif;
+	font-size: 100%;
+}
+
+@layer layout {
+	html {
+		max-width: 84ch;
+		padding: 3rem 2rem;
+		margin: auto;
+		line-height: 1.5;
+		font-size: 1.25rem;
+	}
+	body {
+		margin: 0;
+		padding: 0;
+	}
+	a,
+	a:visited {
+		color: blue;
+	}
+	
+	h2 {
+		margin-top: 2em;
+	}
+}
+
+@layer forms {
+	dl {
+		display: grid;
+		grid-template: auto / max(auto, 10em) 1fr;
+		gap: 0.5em;
+	}
+	
+	dt {
+		  grid-column: 1;
+	}
+	
+	dd {
+		grid-column: 2;
+	}
+	
+	dt, dd {
+		margin: 0;
+		padding: .3em 0;
+		border-bottom: 1px solid rgba(0,0,0,.1);
+	}
+	
+	fieldset {
+		border: 0;
+		margin: 0;
+		padding: 0.5rem;
+	}
+
+	legend {
+		padding: 0;
+		margin-left: -0.5rem;
+		font-size: 1.5em;
+		font-weight: bold;
+	}
+
+	input {
+		width: 100%;
+	}
+
+	input, button {
+		font-size: inherit;
+		font-family: inherit;
+	}
+
+	.info {
+		font-style: italic;
+		font-size: 80%;
+	}
+
+	dt:has(+ dd input[required]) label::after {
+		content: '*';
+		color: red;
+	}
+
+	button {
+		font-size: 80%;
+		float: right;
+		padding: 0.3em 0.7em;
+		border: 2px solid #333;
+		background-color: #ddd;
+		border-radius: 0.5em;
+		font-weight: bold;
+		cursor: pointer;
+	}
+
+	button:hover {
+		background-color: #eee;
+	}
+
+	button:active {
+		background-color: #ccc;
+	}
+
+	form::after {
+		content: "";
+		display: table;
+		clear: both;
+	  }
+}
+
+@keyframes okfade {
+	0% {
+		background: rgb(0 255 0 / 0.2);
+	}
+	100% {
+		background: rgb(0 255 0 / 0);
+	}
+}
+
+.ok {
+	animation: 1s okfade linear;
+}
