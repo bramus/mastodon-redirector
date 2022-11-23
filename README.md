@@ -4,11 +4,13 @@ One thing that’s a bit of a hassle with Mastodon is that you can’t immediate
 
 To make this easier, this extension exists. Press the button, and you’ll be taken to the same account as viewed from the Masto instance you are on.
 
+https://user-images.githubusercontent.com/213073/203604974-c42fc3c0-7a6f-4e2b-84fd-c8c70b75970f.mp4
+
 ## Installation
 
 There’s two options:
 
-- Install it from Chrome Web Store
+- Install it from [the Chrome Web Store](https://chrome.google.com/webstore/detail/mastodon-view-profile-on-my-mastodon-instance/limifnkopacddgpihodacjeckfkpbfoe)
 - Git clone this repo and [load it unpacked](https://developer.chrome.com/docs/extensions/mv3/getstarted/development-basics/#load-unpacked).
 
 ## Usage
