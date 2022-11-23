@@ -1,0 +1,14 @@
+{
+  "name": "Mastodon View Profile on My Mastodon Instance",
+  "action": {},
+  "manifest_version": 3,
+  "version": "0.1",
+  "description": "Shows the current Mastodon Profile from your Mastodon instance",
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  }
+}
