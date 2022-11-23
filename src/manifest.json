@@ -16,9 +16,13 @@
     "128": "images/icon-128.png"
   },
   "background": {
-    "service_worker": "background.js"
+    "scripts": [ "background.js"]
   },
-  "options_page": "options/options.html",
+  "options_ui": {
+    "page": "options/options.html",
+    "browser_style": false,
+    "open_in_tab": true
+  },
   "browser_specific_settings": {
     "gecko": {
       "id": "mastodon-profile-redirect@bram.us"
