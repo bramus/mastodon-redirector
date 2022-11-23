@@ -1,4 +1,4 @@
-# Mastodon View Profile on My Mastodon Instance
+# Mastodon Profile Redirect
 
 One thing that’s a bit of a hassle with Mastodon is that you can’t immediately follow people on other instances: you have to copy the username and search for it on the instance that hosts your account.
 
