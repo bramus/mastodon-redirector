@@ -6,9 +6,9 @@ If you can’t or won’t run [the Mastodon Profile Redirect browser extension](
 
 - Create a new bookmark
 - Set the Name to “View on Mastodon”
-- Set the URL to the code snippet below
+- Set the URL to [the code block shown below](#the-code)
     - Be sure to include the `javascript:` prefix from the code. This is required.
-    - Be sure to change the value of `LOCAL_DOMAIN` so that it reflects your Mastodon instance.
+    - Be sure to change the value of `LOCAL_DOMAIN` _(line 2)_ so that it reflects your Mastodon instance.
 
 ## The Code
 
