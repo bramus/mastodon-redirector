@@ -2,7 +2,7 @@
   "name": "Mastodon Profile Redirect",
   "action": {},
   "manifest_version": 3,
-  "version": "0.2.1",
+  "version": "0.2.3",
   "description": "Rewrites Mastodon Profile URLs so that they are served from the Mastodon instance that hosts your account",
   "permissions": [
     "activeTab",
@@ -16,7 +16,17 @@
     "128": "images/icon-128.png"
   },
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "",
+    "scripts": [ "background.js"]
   },
-  "options_page": "options/options.html"
+  "options_ui": {
+    "page": "options/options.html",
+    "browser_style": false,
+    "open_in_tab": true
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "mastodon-profile-redirect@bram.us"
+    }
+  }
 }
