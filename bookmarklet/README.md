@@ -1,6 +1,6 @@
 # Mastodon Profile Redirect Bookmarklet
 
-If you can’t or won’t run [the Mastodon Profile Redirect browser extension](./../), you can use a bookmarklet instead which also does the job
+If you can’t or won’t run [the Mastodon Profile Redirect browser extension](https://github.com/bramus/mastodon-profile-redirect/), you can use a bookmarklet instead which also does the job
 
 ## Installation Instructions
 
