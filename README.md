@@ -53,9 +53,17 @@ Building depends on [`jq`](https://stedolan.github.io/jq/) which you must instal
 
 ### Loading
 
-For Chromium based browsers, [load the extension unpacked](https://developer.chrome.com/docs/extensions/mv3/getstarted/development-basics/#load-unpacked) from the `./build/chromium` folder.
+For Chromium based browsers, [load the extension unpacked](https://developer.chrome.com/docs/extensions/mv3/getstarted/development-basics/#load-unpacked) from the `./build/chromium` folder. Alternatively you can use the `run-chrome` Make script:
 
-For Firefox, you’ll need [`web-ext`](https://extensionworkshop.com/documentation/develop/getting-started-with-web-ext/) to load the extension during development. A `web-ext-config.js` is included in the repository, so you can easily run `web-ext run`
+```bash
+make run-chrome
+```
+
+For Firefox, you’ll need [`web-ext`](https://extensionworkshop.com/documentation/develop/getting-started-with-web-ext/) to load the extension during development. A `web-ext-config.js` is included in the repository, so you can easily run `web-ext run`. Alternatively you can use the `run-firefox` Make script:
+
+```bash
+make run-firefox
+```
 
 ## Support and bugs
 
