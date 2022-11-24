@@ -11,8 +11,11 @@ if (isMostLikelyMastodon) {
                 const $profileUrlInput = document.querySelector('.modal-root .copypaste input[type="text"]');
                 if (!$profileUrlInput) return;
 
-                const $usernameMetaTag = document.querySelector('meta[property="profile:username"]');
-                if (!$usernameMetaTag) return;
+                // Get username
+                // First try the username meta tag. However, sometimes Mastodon forgets to inject it,
+                // so we fall back to the username shown in the profile header
+                let user = document.querySelector('meta[property="profile:username"]')?.getAttribute('content') || document.querySelector('.account__header .account__header__tabs__name small')?.innerText.substring(1);
+                if (!user) return;
 
                 $choiceBox = $profileUrlInput.closest('.interaction-modal__choices__choice');
                 if (!$choiceBox) return;
@@ -30,9 +33,6 @@ if (isMostLikelyMastodon) {
                     $titleSpan = document.createElement('span');
                     $titleSpan.innerText = `On ${LOCAL_DOMAIN}`;
                     $title.appendChild($titleSpan);
-    
-                    // Extract username from follow button
-                    let user = $usernameMetaTag.getAttribute('content');
         
                     // Trim off @domain suffix in case it matches with LOCAL_DOMAIN. This due to https://github.com/mastodon/mastodon/issues/21469
                     if (user.endsWith(`@${LOCAL_DOMAIN}`)) {
