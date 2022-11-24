@@ -16,6 +16,7 @@
     "128": "images/icon-128.png"
   },
   "background": {
+    "service_worker": "",
     "scripts": [ "background.js"]
   },
   "options_ui": {
