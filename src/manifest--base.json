@@ -15,6 +15,12 @@
     "64": "images/icon-64.png",
     "128": "images/icon-128.png"
   },
+  "content_scripts": [
+    {
+      "matches": ["https://*/@*"],
+      "js": ["content.js"]
+    }
+  ],
   "background": {
     "service_worker": "background.js",
     "scripts": [
