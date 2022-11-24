@@ -2,7 +2,7 @@
 
 One thing that’s a bit of a hassle with Mastodon is that you can’t immediately follow people on other instances: you have to copy the username and search for it on the instance that hosts your account.
 
-To make this easier, this extension exists. Press the button, and you’ll be taken to the same account as viewed from the Masto instance you are on.
+To make this easier, this extension exists.
 
 https://user-images.githubusercontent.com/213073/203604974-c42fc3c0-7a6f-4e2b-84fd-c8c70b75970f.mp4
 
