@@ -27,6 +27,11 @@ if (isMostLikelyMastodon) {
                     const LOCAL_DOMAIN = items.local_domain;
                     const WEB_DOMAIN = items.web_domain || LOCAL_DOMAIN;
 
+                    if (!WEB_DOMAIN) {
+                        $choiceBox.querySelector('p').innerText = 'Please configure the mastodon-profile-redirect browser extension to more easily follow this account, directly on your Mastodon instance.';
+                        return;
+                    }
+
                     $choiceBox.innerText = '';
 
                     $title = document.createElement('h3');
