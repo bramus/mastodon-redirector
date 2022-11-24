@@ -2,7 +2,7 @@
   "name": "Mastodon Profile Redirect",
   "action": {},
   "manifest_version": 3,
-  "version": "0.2.1",
+  "version": "0.2.3",
   "description": "Rewrites Mastodon Profile URLs so that they are served from the Mastodon instance that hosts your account",
   "permissions": [
     "activeTab",
