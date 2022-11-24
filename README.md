@@ -8,9 +8,11 @@ https://user-images.githubusercontent.com/213073/203604974-c42fc3c0-7a6f-4e2b-84
 
 ## Installation
 
-There’s two options:
+There’s two options to install this extension:
 
-- Install it from [the Chrome Web Store](https://chrome.google.com/webstore/detail/mastodon-view-profile-on-my-mastodon-instance/limifnkopacddgpihodacjeckfkpbfoe)
+- Add the extension from one of the browser extension stores:
+    - Chrome, Edge, …: [the Chrome Web Store](https://chrome.google.com/webstore/detail/mastodon-view-profile-on-my-mastodon-instance/limifnkopacddgpihodacjeckfkpbfoe)
+    - Firefox: Coming soon!
 - Git clone this repo and [load it unpacked](https://developer.chrome.com/docs/extensions/mv3/getstarted/development-basics/#load-unpacked).
 
 ## Usage
