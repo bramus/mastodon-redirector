@@ -1,6 +1,6 @@
 module.exports = {
   verbose: true,
-  sourceDir: 'src',
+  sourceDir: 'build/firefox',
   run: {
     firefoxPreview: ['mv3'],
     firefox: "nightly",
