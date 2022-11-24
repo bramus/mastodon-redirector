@@ -20,7 +20,8 @@ const go = () => {
             }
         
             /* Profile page, e.g. https://fediverse.zachleat.com/@zachleat and https://front-end.social/@mia */
-            const userFromProfilePage = document.querySelector('meta[property="profile:username"]')?.getAttribute('content');
+            /* First try the username meta tag. However, sometimes Mastodon forgets to inject it, so we fall back to the username shown in the profile header */
+            const userFromProfilePage = document.querySelector('meta[property="profile:username"]')?.getAttribute('content') || document.querySelector('.account__header .account__header__tabs__name small')?.innerText.substring(1);
             if (userFromProfilePage) {
                 /* Don’t return if already watching on own LOCAL_DOMAIN instance */
                 if (window.location.host === MY_MASTO_LOCAL_DOMAIN) return null;
