@@ -15,6 +15,8 @@ There’s two options to install this extension:
     - Firefox: Coming soon!
 - Git clone this repo and [load it unpacked](https://developer.chrome.com/docs/extensions/mv3/getstarted/development-basics/#load-unpacked).
 
+If you can’t or won’t run the extension, you can use [the bookmarklet](./bookmarklet/) which also does the job.
+
 ## Usage
 
 - Make sure you configure the extension once installed. To do this, right click on the extension icon and choose “Options”
