@@ -3,6 +3,7 @@
 SRC_DIR?="src"
 BUILD_DIR?="build"
 DIST_DIR?="dist"
+CHROME_BINARY?="/Applications/Google Chrome Canary.app/Contents/MacOS/Google Chrome Canary"
 
 VERSION?=${shell cat src/manifest--base.json | jq '.version'}
 
@@ -47,3 +48,15 @@ package-all:
 	@$(MAKE) package-firefox
 	@$(MAKE) build-chromium
 	@$(MAKE) package-chromium
+
+run-chrome:
+	@$(MAKE) build-chromium
+	@printf "\e[1m\e[94m♺ Launching Chrome …\e[0m\n"
+	@-${CHROME_BINARY} --user-data-dir=/tmp/mastodon-profile-redirect-dev --load-extension=${BUILD_DIR}/chromium --no-first-run &>/dev/null &
+	@printf "\e[1m\e[32m✔ Done\e[0m\n\n"
+
+run-firefox:
+	@$(MAKE) build-firefox
+	@printf "\e[1m\e[94m♺ Launching Firefox …\e[0m\n"
+	@web-ext run &>/dev/null &
+	@printf "\e[1m\e[32m✔ Done\e[0m\n\n"
