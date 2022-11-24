@@ -45,9 +45,16 @@ if (isMostLikelyMastodon) {
                     $followButton.href = `https://${WEB_DOMAIN}/authorize_interaction?uri=${encodeURIComponent(user)}`;
                     $followButton.innerText = 'Follow';
         
+                    // Create show profile button
+                    const $showButton = document.createElement('a');
+                    $showButton.classList.add('button', 'button--block', 'button-tertiary');
+                    $showButton.href = `https://${WEB_DOMAIN}/@${user}`;
+                    $showButton.innerText = 'Show Profile';
+        
                     // Inject stuff
                     $choiceBox.appendChild($title);
                     $choiceBox.appendChild($followButton);
+                    $choiceBox.appendChild($showButton);
 
                 });
             });
