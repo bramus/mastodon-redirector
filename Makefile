@@ -7,7 +7,7 @@ DIST_DIR?="dist"
 VERSION?=${shell cat src/manifest--base.json | jq '.version'}
 
 build-firefox:
-	@printf "\e[1m\e[94m♺ Building version ${VERSION} for Firefox"
+	@printf "\e[1m\e[94m♺ Building version ${VERSION} for Firefox\e[0m"
 	@mkdir -p ${BUILD_DIR}/firefox
 	@yes | rm -rf "${BUILD_DIR}/firefox/*"
 	@cp -r ${SRC_DIR}/* ${BUILD_DIR}/firefox
@@ -17,7 +17,7 @@ build-firefox:
 	@printf "\n\e[1m\e[32m✔ Done\e[0m\n\n"
 
 build-chromium:
-	@printf "\e[1m\e[94m♺ Building version ${VERSION} for Chromium"
+	@printf "\e[1m\e[94m♺ Building version ${VERSION} for Chromium\e[0m"
 	@mkdir -p ${BUILD_DIR}/chromium
 	@yes | rm -rf "${BUILD_DIR}/chromium/*"
 	@cp -r ${SRC_DIR}/* ${BUILD_DIR}/chromium
@@ -29,3 +29,21 @@ build-chromium:
 build-all:
 	@$(MAKE) build-firefox
 	@$(MAKE) build-chromium
+
+package-firefox:
+	@printf "\e[1m\e[94m♺ Packaging version ${VERSION} for Firefox\e[0m\n"
+	@mkdir -p ${DIST_DIR}
+	@zip -r -FS ${DIST_DIR}/${VERSION}--firefox.zip ${BUILD_DIR}/firefox
+	@printf "\e[1m\e[32m✔ Done\e[0m\n\n"
+
+package-chromium:
+	@printf "\e[1m\e[94m♺ Packaging version ${VERSION} for Chromium\e[0m\n"
+	@mkdir -p ${DIST_DIR}
+	@zip -r -FS ${DIST_DIR}/${VERSION}--chromium.zip ${BUILD_DIR}/chromium
+	@printf "\e[1m\e[32m✔ Done\e[0m\n\n"
+
+package-all:
+	@$(MAKE) build-firefox
+	@$(MAKE) package-firefox
+	@$(MAKE) build-chromium
+	@$(MAKE) package-chromium
