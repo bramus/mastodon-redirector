@@ -13,6 +13,29 @@ const go = () => {
         }
 
         const tryAndGetUserName = () => {
+            /* Firstly, try and get the username from the URL. The URL could be one for the following forms
+              https://front-end.social/@mia/109348973362020954 
+              https://front-end.social/@mia
+              https://hachyderm.io/@mia@front-end.social
+              https://hachyderm.io/@mia@front-end.social/109348973362020954 
+            */ 
+            const host = window.location.host;
+            /* window.location.pathname would be /@mia/109348973362020954 or /@mia */
+            const username = window.location.pathname.split('/')[1];
+            const usernameParts = username.split('@');
+
+            // username contains only one @ - it's a user at the current host
+            if (usernameParts.length === 2) {
+                return `${usernameParts[1]}@${host}`;
+            }
+
+            // username contains two @: it's a remote user
+            if (usernameParts.length === 3) {
+                return `${usernameParts[1]}@${usernameParts[2]}`
+            }
+
+            /** If we haven't been able to identify the host, try and extract it from various parts of the page. */
+
             /* Profile with a moved banner (e.g. https://mastodon.social/@bramus): follow that link */
             const userNewProfile = document.querySelector('.moved-account-banner .button')?.getAttribute('href');
             if (userNewProfile) {
