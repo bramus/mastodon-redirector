@@ -6,7 +6,7 @@ To make this easier, this extension exists. Press the button, and you’ll be ta
 
 https://user-images.githubusercontent.com/213073/203604974-c42fc3c0-7a6f-4e2b-84fd-c8c70b75970f.mp4
 
-| [![Available on the Chrome Web Store](./assets/chrome-webstore.svg)](https://chrome.google.com/webstore/detail/mastodon-view-profile-on-my-mastodon-instance/limifnkopacddgpihodacjeckfkpbfoe) | [![Available on the Firefox Add-ons Website](./assets/firefox-addons.svg)](#firefox) | [![Available as a Bookmarklet](./assets/bookmarklet.svg)](#other-browsers) |
+| [![Available on the Chrome Web Store](./assets/chrome-webstore.svg)](https://chrome.google.com/webstore/detail/mastodon-view-profile-on-my-mastodon-instance/limifnkopacddgpihodacjeckfkpbfoe) | [![Available on the Firefox Add-ons Website](./assets/firefox-addons.svg)](https://addons.mozilla.org/en-US/firefox/addon/mastodon-profile-redirect/) | [![Available as a Bookmarklet](./assets/bookmarklet.svg)](#other-browsers) |
 |-|-|-|
 
 ## Installation
@@ -21,7 +21,12 @@ Alternatively you can clone this repository and [load the extension unpacked](ht
 
 ### Firefox
 
-Soon this extension will also be available on the [Firefox Add-Ons Website](https://addons.mozilla.org/firefox/). The extension has been submitted and is currently pending review.
+You can install the extension from [the Firefox Add-Ons Website](https://addons.mozilla.org/en-US/firefox/addon/mastodon-profile-redirect/). Because this extension uses Manifest v3, support is limited to Firefox 109 and up.
+
+To run the extension in older versions of Firefox:
+
+- Go to `about:config` and set `extensions.manifestV3.enabled` to `true`
+- Hit the “download file” link on the [Add-Ons listing](https://addons.mozilla.org/en-US/firefox/addon/mastodon-profile-redirect/), upon which Firefox will prompt you to install it
 
 ### Other Browsers
 
