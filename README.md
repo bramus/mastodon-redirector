@@ -19,6 +19,8 @@ The easiest way is to install it from [the Chrome Web Store](https://chrome.goog
 
 Alternatively you can clone this repository and [load the extension unpacked](https://developer.chrome.com/docs/extensions/mv3/getstarted/development-basics/#load-unpacked). Before you can do this, you will need to [build the project](#development) though.
 
+Don’t forget to [configure the extension](#configuration).
+
 ### Firefox
 
 You can install the extension from [the Firefox Add-Ons Website](https://addons.mozilla.org/en-US/firefox/addon/mastodon-profile-redirect/). Because this extension uses Manifest v3, support is limited to Firefox 109 and up.
@@ -28,19 +30,35 @@ To run the extension in older versions of Firefox:
 - Go to `about:config` and set `extensions.manifestV3.enabled` to `true`
 - Hit the “download file” link on the [Add-Ons listing](https://addons.mozilla.org/en-US/firefox/addon/mastodon-profile-redirect/), upon which Firefox will prompt you to install it
 
+Don’t forget to [configure the extension](#configuration).
+
 ### Other Browsers
 
 If you can’t or won’t run the extension, you can use [the bookmarklet](./bookmarklet/) which also does the job.
 
 ## Configuration
 
-- Make sure you configure the extension once installed. To do this, right click on the extension icon and choose “Options”
-- When viewing a Mastodon page, hit the icon to get redirected to the profile shown on your instance.
-    - TIP: To get easy access, pin the extension icon
-- Supported pages
-    - Profile page
-    - Profile page that is set up to redirect to another account
-    - Message detail page
+- Chrome:
+    - Right click the extension icon and choose “Options”
+    - Enter the details and hit “Save Settings”
+- Firefox:
+    - Right click the extension icon and choose “Manage Extension”
+    - Click the three dot menu next to the extension name and click “preferences”
+    - Enter the details and hit “Save Settings”
+
+TIP: To get easy access, pin the extension icon
+
+## Usage
+
+When viewing a Mastodon page on a different instance than yours, hit the extension icon to get redirected to the profile shown on your instance.
+
+Supported pages:
+
+- Profile page
+- Profile page that is set up to redirect to another account
+- Message detail page
+
+Redirecting to status pages from one server to the other is not possible because of the way how Mastodon works: the ids are different per instance.
 
 ## Development
 
