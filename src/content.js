@@ -27,40 +27,29 @@ if (isMostLikelyMastodon) {
                     const LOCAL_DOMAIN = items.local_domain;
                     const WEB_DOMAIN = items.web_domain || LOCAL_DOMAIN;
 
+                    // Not configured? Show a notification.
                     if (!WEB_DOMAIN) {
                         $choiceBox.querySelector('p').innerText = 'Please configure the mastodon-profile-redirect browser extension to more easily follow this account, directly on your Mastodon instance.';
                         return;
                     }
 
-                    $choiceBox.innerText = '';
-
-                    $title = document.createElement('h3');
-                    $titleSpan = document.createElement('span');
-                    $titleSpan.innerText = `On ${LOCAL_DOMAIN}`;
-                    $title.appendChild($titleSpan);
+                    // Change title to reflect user’s Masto instance
+                    $choiceBox.querySelector('h3 span').innerText = `On ${LOCAL_DOMAIN}`;
         
                     // Trim off @domain suffix in case it matches with LOCAL_DOMAIN. This due to https://github.com/mastodon/mastodon/issues/21469
                     if (user.endsWith(`@${LOCAL_DOMAIN}`)) {
                         user = user.substring(0, user.length - `@${LOCAL_DOMAIN}`.length);
                     }
         
-                    // Create follow button
-                    const $followButton = document.createElement('a');
-                    $followButton.classList.add('button', 'button--block');
-                    $followButton.href = `https://${WEB_DOMAIN}/authorize_interaction?uri=${encodeURIComponent(user)}`;
-                    $followButton.innerText = 'Follow';
-        
-                    // Create show profile button
-                    const $showButton = document.createElement('a');
-                    $showButton.classList.add('button', 'button--block', 'button-tertiary');
-                    $showButton.href = `https://${WEB_DOMAIN}/@${user}`;
-                    $showButton.innerText = 'Show Profile';
-        
-                    // Inject stuff
-                    $choiceBox.appendChild($title);
-                    $choiceBox.appendChild($followButton);
-                    $choiceBox.appendChild($showButton);
+                    // Create view profile button
+                    const $viewButton = document.createElement('a');
+                    $viewButton.classList.add('button', 'button--block');
+                    $viewButton.href = `https://${WEB_DOMAIN}/@${user}`;
+                    $viewButton.innerText = 'View Profile';
 
+                    // Replace the orig paragraph with the show profile button
+                    $choiceBox.querySelector('p').insertAdjacentElement('beforebegin', $viewButton);
+                    $choiceBox.removeChild($choiceBox.querySelector('p'));
                 });
             });
         });
