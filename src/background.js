@@ -31,6 +31,27 @@ const go = () => {
             /* Message detail, e.g. https://front-end.social/@mia/109348973362020954 and https://bell.bz/@andy/109392510558650993 and https://bell.bz/@andy/109392510558650993 */
             const userFromDetailPage = document.querySelector('.detailed-status .display-name__account')?.innerText;
             if (userFromDetailPage) return userFromDetailPage.substring(1);
+
+            /* Finally, if we didn't manage to get the username from the HTML, try and get the username from the URL. The URL could be one for the following forms
+            https://front-end.social/@mia/109348973362020954 
+            https://front-end.social/@mia
+            https://hachyderm.io/@mia@front-end.social
+            https://hachyderm.io/@mia@front-end.social/109348973362020954 
+            */
+            const host = window.location.host;
+            /* window.location.pathname would be /@mia/109348973362020954 or /@mia */
+            const username = window.location.pathname.split('/')[1];
+            const usernameParts = username.split('@');
+
+            // username contains only one @ - it's a user at the current host
+            if (usernameParts.length === 2) {
+                return `${usernameParts[1]}@${host}`;
+            }
+
+            // username contains two @: it's a remote user
+            if (usernameParts.length === 3) {
+                return `${usernameParts[1]}@${usernameParts[2]}`
+            }
         
             return null;
         };
