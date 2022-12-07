@@ -35,13 +35,13 @@ build-all:
 package-firefox:
 	@printf "\e[1m\e[94m♺ Packaging version ${VERSION} for Firefox\e[0m\n"
 	@mkdir -p ${DIST_DIR}
-	@cd ${BUILD_DIR}/firefox/ && zip -r -FS ${PWD}/${DIST_DIR}/${VERSION}--firefox.zip ./*
+	@cd ${BUILD_DIR}/firefox/ && zip -r -FS ${PWD}/${DIST_DIR}/${VERSION}--firefox.zip ./* -x "**/.*"
 	@printf "\e[1m\e[32m✔ Done\e[0m\n\n"
 
 package-chromium:
 	@printf "\e[1m\e[94m♺ Packaging version ${VERSION} for Chromium\e[0m\n"
 	@mkdir -p ${DIST_DIR}
-	@cd ${BUILD_DIR}/chromium/ && zip -r -FS ${PWD}/${DIST_DIR}/${VERSION}--chromium.zip ./*
+	@cd ${BUILD_DIR}/chromium/ && zip -r -FS ${PWD}/${DIST_DIR}/${VERSION}--chromium.zip ./* -x "**/.*"
 	@printf "\e[1m\e[32m✔ Done\e[0m\n\n"
 
 package-all:
