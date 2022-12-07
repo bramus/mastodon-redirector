@@ -4,6 +4,7 @@ SRC_DIR?="src"
 BUILD_DIR?="build"
 DIST_DIR?="dist"
 CHROME_BINARY?="/Applications/Google Chrome Canary.app/Contents/MacOS/Google Chrome Canary"
+PWD=${shell pwd}
 
 VERSION?=${shell cat src/manifest--base.json | jq '.version'}
 
@@ -34,13 +35,13 @@ build-all:
 package-firefox:
 	@printf "\e[1m\e[94m♺ Packaging version ${VERSION} for Firefox\e[0m\n"
 	@mkdir -p ${DIST_DIR}
-	@zip -r -FS ${DIST_DIR}/${VERSION}--firefox.zip ${BUILD_DIR}/firefox
+	@cd ${BUILD_DIR}/firefox/ && zip -r -FS ${PWD}/${DIST_DIR}/${VERSION}--firefox.zip ./*
 	@printf "\e[1m\e[32m✔ Done\e[0m\n\n"
 
 package-chromium:
 	@printf "\e[1m\e[94m♺ Packaging version ${VERSION} for Chromium\e[0m\n"
 	@mkdir -p ${DIST_DIR}
-	@zip -r -FS ${DIST_DIR}/${VERSION}--chromium.zip ${BUILD_DIR}/chromium
+	@cd ${BUILD_DIR}/chromium/ && zip -r -FS ${PWD}/${DIST_DIR}/${VERSION}--chromium.zip ./*
 	@printf "\e[1m\e[32m✔ Done\e[0m\n\n"
 
 package-all:
