@@ -2,7 +2,8 @@
 	box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
 	background: aliceblue;
 }
 
@@ -34,7 +35,7 @@ body {
 		align-items: center;
 		gap: 0.5rem;
 	}
-	
+
 	h2 {
 		margin-top: 2em;
 	}
@@ -46,21 +47,22 @@ body {
 		grid-template: auto / max(auto, 10em) 1fr;
 		gap: 0.5em;
 	}
-	
+
 	dt {
-		  grid-column: 1;
+		grid-column: 1;
 	}
-	
+
 	dd {
 		grid-column: 2;
 	}
-	
-	dt, dd {
+
+	dt,
+	dd {
 		margin: 0;
-		padding: .3em 0;
-		border-bottom: 1px solid rgba(0,0,0,.1);
+		padding: 0.3em 0;
+		border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 	}
-	
+
 	fieldset {
 		border: 0;
 		margin: 0;
@@ -79,7 +81,8 @@ body {
 		background: #fff;
 	}
 
-	input, button {
+	input,
+	button {
 		font-size: inherit;
 		font-family: inherit;
 	}
@@ -90,7 +93,7 @@ body {
 	}
 
 	dt:has(+ dd input[required]) label::after {
-		content: '*';
+		content: "*";
 		color: red;
 	}
 
@@ -117,7 +120,7 @@ body {
 		content: "";
 		display: table;
 		clear: both;
-	  }
+	}
 }
 
 @keyframes okfade {

@@ -1,0 +1,12 @@
+semi: true
+singleQuote: true
+trailingComma: "es5"
+useTabs: true
+printWidth: 9999
+overrides:
+  - files: "*.json"
+    options:
+      useTabs: false
+  - files: "*.css"
+    options:
+      singleQuote: false

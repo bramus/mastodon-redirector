@@ -4,11 +4,7 @@
   "manifest_version": 3,
   "version": "0.3.0",
   "description": "Makes it easier to follow Mastodon Profile URLs from other instances.",
-  "permissions": [
-    "activeTab",
-    "scripting",
-    "storage"
-  ],
+  "permissions": ["activeTab", "scripting", "storage"],
   "icons": {
     "16": "images/icon-16.png",
     "32": "images/icon-32.png",
@@ -23,9 +19,7 @@
   ],
   "background": {
     "service_worker": "background.js",
-    "scripts": [
-      "background.js"
-    ]
+    "scripts": ["background.js"]
   },
   "options_ui": {
     "page": "options/options.html",
