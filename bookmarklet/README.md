@@ -1,16 +1,20 @@
-# Mastodon Profile Redirect Bookmarklet
+# Mastodon Redirect Bookmarklets
 
-If you can’t or won’t run [the Mastodon Profile Redirect browser extension](https://github.com/bramus/mastodon-profile-redirect/), you can use a bookmarklet instead which also does the job
+If you can’t or won’t run [the Mastodon Profile Redirect browser extension](https://github.com/bramus/mastodon-profile-redirect/), you can use these bookmarklets instead which also do the job
 
 ## Installation Instructions
 
+For each of the bookmarklets:
+
 - Create a new bookmark
-- Set the Name to “View on Mastodon”
-- Set the URL to [the code block shown below](#the-code)
+- Set the Name
+- Set the URL to the contents of the code block
   - Be sure to include the `javascript:` prefix from the code. This is required.
   - Be sure to change the value of `LOCAL_DOMAIN` _(line 2)_ so that it reflects your Mastodon instance.
 
 ## The Code
+
+### View Mastodon Profile
 
 ```js
 javascript: (function () {
@@ -55,5 +59,22 @@ javascript: (function () {
 	}
 
 	window.location.href = `https://${WEB_DOMAIN}/@${user}`;
+})();
+```
+
+### View Toot
+
+```js
+javascript: (function () {
+	const LOCAL_DOMAIN = 'example.org'; /* 👈 Change this value to your Mastodon domain, e.g. 'mastodon.social' */
+	const WEB_DOMAIN = LOCAL_DOMAIN; /* 👈 Only change this value if your Masto host is hosted an different domain than the LOCAL_DOMAIN */
+
+	/* Show warning in case user has not configured the bookmarklet */
+	if (LOCAL_DOMAIN === 'example.org') {
+		alert('This bookmarklet is not configured properly. Please follow the installation instructions and change the value for LOCAL_DOMAIN before you use it.');
+		return;
+	}
+
+	window.location.href = `https://${WEB_DOMAIN}/authorize_interaction?uri=${encodeURIComponent(window.location.href)}`;
 })();
 ```
