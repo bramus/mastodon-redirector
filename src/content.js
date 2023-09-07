@@ -1,24 +1,76 @@
 const isMostLikelyMastodon = document.querySelector('#mastodon');
 
-if (isMostLikelyMastodon) {
+let LOCAL_DOMAIN = null;
+let WEB_DOMAIN = null;
+
+// This method gets the profile redirect URL from the DOM
+// This because the it must be in the form `@username@otherhost`
+const tryAndGetUserNameFromProfilePage = () => {
+	/* Profile with a moved banner (e.g. https://mastodon.social/@bramus): follow that link */
+	const userNewProfile = document.querySelector('.moved-account-banner .button')?.getAttribute('href');
+	if (userNewProfile) {
+		return userNewProfile.substring(2);
+	}
+
+	/* Profile page, e.g. https://fediverse.zachleat.com/@zachleat and https://front-end.social/@mia */
+	const userFromProfilePage = document.querySelector('.account__header .account__header__tabs__name small')?.innerText.substring(1);
+	if (userFromProfilePage) {
+		return userFromProfilePage;
+	}
+
+	// Not a profile page or some markup that is preventing things from happening
+	return null;
+};
+
+const getProfileRedirectUrl = () => {
+	let user = tryAndGetUserNameFromProfilePage();
+
+	// Found user ~> Redirect to profile on own host
+	if (user) {
+		/* Trim off @domain suffix in case it matches with LOCAL_DOMAIN. This due to https://github.com/mastodon/mastodon/issues/21469 */
+		if (user.endsWith(`@${LOCAL_DOMAIN}`)) {
+			user = user.substring(0, user.length - `@${LOCAL_DOMAIN}`.length);
+		}
+
+		return `https://${WEB_DOMAIN}/@${user}`;
+	}
+
+	return null;
+};
+
+const getRedirectUrlForUrl = (url) => {
+	return `https://${WEB_DOMAIN}/authorize_interaction?uri=${encodeURIComponent(url)}`;
+};
+
+let haltMutationObserver = false;
+const go = () => {
 	const $modalRoot = document.querySelector('.modal-root');
 
 	if ($modalRoot) {
 		const observer = new MutationObserver(function (mutations_list) {
+			// Don’t double run when already busy
+			if (haltMutationObserver) {
+				return;
+			}
+			haltMutationObserver = true;
+
 			mutations_list.forEach(function (mutation) {
-				if (!mutation.addedNodes.length) return;
+				if (!mutation.addedNodes.length) {
+					haltMutationObserver = false;
+					return;
+				}
 
-				const $profileUrlInput = document.querySelector('.modal-root .copypaste input[type="text"]');
-				if (!$profileUrlInput) return;
+				const $redirectInput = document.querySelector('.modal-root .copypaste input[type="text"]');
+				if (!$redirectInput) {
+					haltMutationObserver = false;
+					return;
+				}
 
-				// Get username
-				// First try the username meta tag. However, sometimes Mastodon forgets to inject it,
-				// so we fall back to the username shown in the profile header
-				let user = document.querySelector('meta[property="profile:username"]')?.getAttribute('content') || document.querySelector('.account__header .account__header__tabs__name small')?.innerText.substring(1);
-				if (!user) return;
-
-				$choiceBox = $profileUrlInput.closest('.interaction-modal__choices__choice');
-				if (!$choiceBox) return;
+				$choiceBox = $redirectInput.closest('.interaction-modal__choices__choice');
+				if (!$choiceBox) {
+					haltMutationObserver = false;
+					return;
+				}
 
 				chrome.storage.sync.get(
 					{
@@ -26,37 +78,61 @@ if (isMostLikelyMastodon) {
 						web_domain: '',
 					},
 					function (items) {
-						const LOCAL_DOMAIN = items.local_domain;
-						const WEB_DOMAIN = items.web_domain || LOCAL_DOMAIN;
+						LOCAL_DOMAIN = items.local_domain;
+						WEB_DOMAIN = items.web_domain || LOCAL_DOMAIN;
 
 						// Not configured? Show a notification.
 						if (!WEB_DOMAIN) {
 							$choiceBox.querySelector('p').innerText = 'Please configure the mastodon-profile-redirect browser extension to more easily follow this account, directly on your Mastodon instance.';
+							haltMutationObserver = false;
 							return;
 						}
 
 						// Change title to reflect user’s Masto instance
 						$choiceBox.querySelector('h3 span').innerText = `On ${LOCAL_DOMAIN}`;
 
-						// Trim off @domain suffix in case it matches with LOCAL_DOMAIN. This due to https://github.com/mastodon/mastodon/issues/21469
-						if (user.endsWith(`@${LOCAL_DOMAIN}`)) {
-							user = user.substring(0, user.length - `@${LOCAL_DOMAIN}`.length);
+						let redirectUrl = $redirectInput.value;
+						let label = null;
+
+						// We resort to URL sniffing here … sorry
+						const urlPathParts = new URL(redirectUrl).pathname.substr('1').split('/');
+
+						// Only 1 part that starts with an @?
+						// ~> Build and use profile URL
+						if (urlPathParts.length == 1 && urlPathParts[0].startsWith('@')) {
+							redirectUrl = getProfileRedirectUrl();
+							label = 'View Profile';
+						}
+						// Everything else
+						// ~> Trust the input value and use that
+						else {
+							redirectUrl = getRedirectUrlForUrl($redirectInput.value);
+							label = 'View Post';
 						}
 
-						// Create view profile button
-						const $viewButton = document.createElement('a');
-						$viewButton.classList.add('button', 'button--block');
-						$viewButton.href = `https://${WEB_DOMAIN}/@${user}`;
-						$viewButton.innerText = 'View Profile';
+						if (redirectUrl) {
+							// Create view button
+							const $viewButton = document.createElement('a');
+							$viewButton.classList.add('button', 'button--block');
+							$viewButton.href = redirectUrl;
+							$viewButton.innerText = label;
 
-						// Replace the orig paragraph with the show profile button
-						$choiceBox.querySelector('p').insertAdjacentElement('beforebegin', $viewButton);
-						$choiceBox.removeChild($choiceBox.querySelector('p'));
+							// Replace the orig paragraph with the show profile button
+							$choiceBox.querySelector('p').insertAdjacentElement('beforebegin', $viewButton);
+							$choiceBox.removeChild($choiceBox.querySelector('p'));
+						}
 					}
 				);
 			});
+
+			// Unlock MutationObserver after having processed the mutations list
+			setTimeout(() => {
+				haltMutationObserver = false;
+			}, 10);
 		});
 
 		observer.observe($modalRoot, { subtree: true, childList: true });
 	}
-}
+};
+
+if (isMostLikelyMastodon) go();
