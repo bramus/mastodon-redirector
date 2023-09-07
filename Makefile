@@ -32,6 +32,11 @@ build-all:
 	@$(MAKE) build-firefox
 	@$(MAKE) build-chromium
 
+watch:
+	@watchman --version > /dev/null 2>&1 || (printf "\e[1m\e[31mERROR: watchman is required. Please install it first.\e[0m\n"; exit 1)
+	@printf "\e[1m\e[94m♺ Starting watchman… \e[0m\n"
+	@watchman-make -p 'src/*' 'src/**/*' 'Makefile*' -t build-all
+
 package-firefox:
 	@printf "\e[1m\e[94m♺ Packaging version ${VERSION} for Firefox\e[0m\n"
 	@mkdir -p ${DIST_DIR}

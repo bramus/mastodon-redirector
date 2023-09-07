@@ -74,6 +74,12 @@ The built, yet still unpacked, extensions can be found in `./build/firefox` and 
 
 Building depends on [`jq`](https://stedolan.github.io/jq/) which you must install first.
 
+While actively developing, make use of the `watch` task. It will auto-rebuild whenever you save something in `src/`.
+
+```bash
+make watch
+```
+
 ### Loading
 
 For Chromium based browsers, [load the extension unpacked](https://developer.chrome.com/docs/extensions/mv3/getstarted/development-basics/#load-unpacked) from the `./build/chromium` folder. Alternatively you can use the `run-chrome` Make script:
