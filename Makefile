@@ -24,7 +24,7 @@ build-chromium:
 	@yes | rm -rf "${BUILD_DIR}/chromium/*"
 	@cp -r ${SRC_DIR}/* ${BUILD_DIR}/chromium
 	@# Chrome does not need .background.scripts
-	@cat ${BUILD_DIR}/chromium/manifest--base.json | jq 'del(.background.scripts)' > ${BUILD_DIR}/chromium/manifest.json
+	@cat ${BUILD_DIR}/chromium/manifest--base.json | jq 'del(.background.scripts)' | jq 'del(.browser_specific_settings)' > ${BUILD_DIR}/chromium/manifest.json
 	@rm ${BUILD_DIR}/chromium/manifest--base.json
 	@printf "\n\e[1m\e[32m✔ Done\e[0m\n\n"
 
