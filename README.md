@@ -1,4 +1,4 @@
-# Mastodon Profile Redirect
+# Mastodon Redirector
 
 One thing that’s a bit of a hassle with Mastodon is that you can’t immediately follow people on other instances: you have to copy the username and search for it on the instance that hosts your account. Same story with favoriting and boosting their posts, when viewed on their instance’s URL.
 
