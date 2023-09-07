@@ -1,6 +1,6 @@
 # Mastodon Profile Redirect
 
-One thing that’s a bit of a hassle with Mastodon is that you can’t immediately follow people on other instances: you have to copy the username and search for it on the instance that hosts your account.
+One thing that’s a bit of a hassle with Mastodon is that you can’t immediately follow people on other instances: you have to copy the username and search for it on the instance that hosts your account. Same story with favoriting and boosting their posts, when viewed on their instance’s URL.
 
 To make this easier, this extension exists.
 
@@ -50,15 +50,9 @@ TIP: To get easy access, pin the extension icon
 
 ## Usage
 
-When viewing a Mastodon page on a different instance than yours, hit the extension icon to get redirected to the profile shown on your instance.
+When viewing a Mastodon page on a different instance than yours, hit the extension icon to get redirected to the profile/post on your instance. You can also use the `Alt`+`Shift`+`M` / `Option`+`Shift`+`M` shortcut to invoke the redirect.
 
-Supported pages:
-
-- Profile page
-- Profile page that is set up to redirect to another account
-- Message detail page
-
-Redirecting to status pages from one server to the other is not possible because of the way how Mastodon works: the ids are different per instance.
+Furthermore, this extension also modifies the modals Mastodon shows on other instances. When wanting to follow/favorite/boost, a button with a direct link to your Mastodon instance will be injected into the markup.
 
 ## Development
 
