@@ -7,9 +7,20 @@ One thing that’s a bit of a hassle with Mastodon is that you can’t immediate
 
 To make this easier, this extension exists.
 
-https://user-images.githubusercontent.com/213073/203604974-c42fc3c0-7a6f-4e2b-84fd-c8c70b75970f.mp4
+## Demo
+
+https://github.com/bramus/mastodon-redirector/assets/213073/b0554662-a7c2-4261-aae0-957f38f47ffb
+
+_This demo shows Chrome with the extension running. My Mastodon host is `front-end.social`. After configuring the extension, I can quickly jump from other Mastodon instances to my own instance where I can follow/favorite/boost._
 
 ## Installation
+
+### Quick Links
+
+Use one of the buttons below to be taken to the extension stores
+
+| [![Available on the Chrome Web Store](./assets/chrome-webstore.svg)](https://chrome.google.com/webstore/detail/mastodon-redirector/limifnkopacddgpihodacjeckfkpbfoe) | [![Available on the Firefox Add-ons Website](./assets/firefox-addons.svg)](https://addons.mozilla.org/en-US/firefox/addon/mastodon-profile-redirect/) | [![Available as Bookmarklets](./assets/bookmarklet.svg)](#other-browsers) |
+|-|-|-|
 
 ### Chromium-based browsers
 
