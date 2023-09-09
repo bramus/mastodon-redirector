@@ -1,13 +1,13 @@
 # Mastodon Redirector
 
+| [![Available on the Chrome Web Store](./assets/chrome-webstore.svg)](https://chrome.google.com/webstore/detail/mastodon-redirector/limifnkopacddgpihodacjeckfkpbfoe) | [![Available on the Firefox Add-ons Website](./assets/firefox-addons.svg)](https://addons.mozilla.org/en-US/firefox/addon/mastodon-profile-redirect/) | [![Available as Bookmarklets](./assets/bookmarklet.svg)](#other-browsers) |
+|-|-|-|
+
 One thing that’s a bit of a hassle with Mastodon is that you can’t immediately follow people on other instances: you have to copy the username and search for it on the instance that hosts your account. Same story with favoriting and boosting their posts, when viewed on their instance’s URL.
 
 To make this easier, this extension exists.
 
 https://user-images.githubusercontent.com/213073/203604974-c42fc3c0-7a6f-4e2b-84fd-c8c70b75970f.mp4
-
-| [![Available on the Chrome Web Store](./assets/chrome-webstore.svg)](https://chrome.google.com/webstore/detail/mastodon-view-profile-on-my-mastodon-instance/limifnkopacddgpihodacjeckfkpbfoe) | [![Available on the Firefox Add-ons Website](./assets/firefox-addons.svg)](https://addons.mozilla.org/en-US/firefox/addon/mastodon-profile-redirect/) | [![Available as a Bookmarklet](./assets/bookmarklet.svg)](#other-browsers) |
-|-|-|-|
 
 ## Installation
 
@@ -34,7 +34,7 @@ Don’t forget to [configure the extension](#configuration).
 
 ### Other Browsers
 
-If you can’t or won’t run the extension, you can use [the bookmarklet](./bookmarklet/) which also does the job.
+If you can’t or won’t run the extension, you can use [the bookmarklets](./bookmarklet/) which also do the job.
 
 ## Configuration
 
@@ -52,7 +52,7 @@ TIP: To get easy access, pin the extension icon
 
 When viewing a Mastodon page on a different instance than yours, hit the extension icon to get redirected to the profile/post on your instance. You can also use the `Alt`+`Shift`+`M` / `Option`+`Shift`+`M` shortcut to invoke the redirect.
 
-Furthermore, this extension also modifies the modals Mastodon shows on other instances. When wanting to follow/favorite/boost, a button with a direct link to your Mastodon instance will be injected into the markup.
+Furthermore, this extension modifies the modals Mastodon shows on other instances. When wanting to follow/favorite/boost, a button with a direct link to your Mastodon instance will be injected into the markup.
 
 ## Development
 
