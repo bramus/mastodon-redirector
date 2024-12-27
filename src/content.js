@@ -13,9 +13,16 @@ const tryAndGetUserNameFromProfilePage = () => {
 	}
 
 	/* Profile page, e.g. https://fediverse.zachleat.com/@zachleat and https://front-end.social/@mia */
-	const userFromProfilePage = document.querySelector('.account__header .account__header__tabs__name small')?.innerText.substring(1);
+	const userFromProfilePage = document.querySelector('.account__header .account__header__tabs__name small')?.innerText.split('\n');
 	if (userFromProfilePage) {
-		return userFromProfilePage;
+		/* For profile pages on Mastodon v4.2.x */
+		if (userFromProfilePage.length == 1) {
+			return userFromProfilePage[0].substring(1);
+		}
+		/* For profile pages on Mastodon v4.3.x and v4.4.x */
+		else if (userFromProfilePage.length == 3) {
+			return userFromProfilePage[0].substring(1) + userFromProfilePage[1];
+		}
 	}
 
 	// Not a profile page or some markup that is preventing things from happening
