@@ -2,7 +2,7 @@
   "name": "Mastodon Redirector",
   "action": {},
   "manifest_version": 3,
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Redirect Mastodon URLs from other instances to your own instance.",
   "permissions": ["activeTab", "scripting", "storage"],
   "icons": {
